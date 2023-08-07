@@ -7,13 +7,16 @@ class Transaction {
     this.account = account;
   }
 
+  commit() {
+    this.account.balance += this.value;
+  }
 }
 
 class Withdrawal extends Transaction {
 
   // Update the balance in the account
-  commit() {
-    this.account.balance -= this.amount;
+  get value() {
+    return -this.amount;
   }
 
 }
@@ -21,8 +24,8 @@ class Withdrawal extends Transaction {
 class Deposit extends Transaction {
 
   // Update the balance in the account
-  commit() {
-    this.account.balance += this.amount;
+  get value() {
+    return this.amount
   }
 
 }
